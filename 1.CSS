@@ -1,0 +1,178 @@
+/* Estilos Generales */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: space-between; /* Espaciado adecuado entre los cards */
+    align-items: flex-start;
+    flex-wrap: wrap;
+    padding: 20px;
+    gap: 20px; /* Espacio entre tarjetas */
+  }
+  
+  .card {
+    flex: 1 1 48%; /* Cada tarjeta ocupará el 48% para dar espacio entre ellas */
+    padding: 20px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  }
+  
+  .card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card-img {
+    width: 100%;
+    height: auto; /* Ajustamos la altura automática para evitar recorte */
+    max-height: 300px; /* Limitamos la altura máxima para que no sea muy alta */
+    object-fit: contain; /* Asegura que la imagen se ajuste sin recortarse */
+    border-radius: 10px;
+    margin-bottom: 15px;
+  }
+  
+  h3 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: #007BFF;
+  }
+  
+  p {
+    margin-bottom: 10px;
+    color: #555;
+    line-height: 1.5;
+  }
+  
+  button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Modal Estilos */
+  .modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 600px;
+    text-align: left;
+    position: relative;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+    max-height: 80%;
+  }
+  
+  .modal h2 {
+    font-size: 2em;
+    margin-bottom: 15px;
+    color: #333;
+  }
+  
+  .modal p {
+    margin: 10px 0;
+    line-height: 1.6;
+    color: #555;
+  }
+  
+  .modal-img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 5px;
+    margin-bottom: 15px;
+  }
+  
+  .close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 24px;
+    color: #333;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .close:hover {
+    color: #888;
+  }
+  
+  /* Footer Estilos */
+  .footer {
+    background-color: #003366;
+    color: white;
+    padding: 40px 0;
+    text-align: left;
+    font-family: Arial, sans-serif;
+  }
+  
+  .footer .container {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .footer-section {
+    flex: 1 1 20%;
+    margin: 0 15px;
+  }
+  
+  .footer-section h3 {
+    color: #ffffff;
+    margin-bottom: 15px;
+  }
+  
+  .footer-section p {
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #bbbbbb;
+  }
+  
+  .footer-section a {
+    color: #ffffff;
+    text-decoration: none;
+  }
+  
+  .footer-section a:hover {
+    text-decoration: underline;
+  }
+  
+  .footer .logo {
+    width: 100px;
+    margin-bottom: 15px;
+  }

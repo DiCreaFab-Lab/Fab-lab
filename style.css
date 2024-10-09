@@ -1,0 +1,216 @@
+/* Estilos generales */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #2c2c2c;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* Header */
+
+header {
+    background-color: #003366;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    color: #ffffff;
+    font-size: 1.5rem;
+    /* Tamaño de fuente del header */
+}
+
+header .logo img {
+    max-width: 150px;
+    /* Ajusta el tamaño del logo según sea necesario */
+    height: auto;
+    /* Mantiene la relación de aspecto del logo */
+}
+
+
+/* Navbar */
+
+nav {
+    display: flex;
+    align-items: center;
+    /* Alinea verticalmente los elementos */
+    background-color: #003366;
+    /* Color de fondo del navbar */
+    padding: 10px 20px;
+    /* Espaciado dentro del navbar */
+}
+
+nav .logo {
+    flex: 1;
+    /* Asegura que el logo esté a la izquierda */
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    /* Centra los elementos de la lista horizontalmente */
+    flex: 3;
+    /* Asegura que los enlaces ocupen el espacio central */
+}
+
+nav ul li {
+    margin: 0 15px;
+    /* Espacio entre los elementos de la lista */
+}
+
+nav ul li a {
+    color: #ffffff;
+    /* Color del texto de los enlaces */
+    text-decoration: none;
+    font-size: 18px;
+    /* Tamaño de fuente de los enlaces */
+    padding: 5px 10px;
+    /* Espaciado en los enlaces */
+    transition: color 0.3s ease;
+    /* Transición para el hover */
+}
+
+nav ul li a:hover {
+    color: #d0d0d0;
+    /* Color de texto en hover */
+    text-decoration: underline;
+}
+
+
+/* Campo de búsqueda */
+
+#searchInput {
+    margin-top: 10px;
+    padding: 10px;
+    width: 100%;
+    /* Cambiado para ocupar todo el ancho en pantallas pequeñas */
+    max-width: 400px;
+    /* Tamaño máximo en pantallas grandes */
+    border: none;
+    border-radius: 5px;
+    outline: none;
+}
+
+
+/* Estilos de las tarjetas del catálogo */
+
+#catalog {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.product-card {
+    background-color: #3e3e3e;
+    padding: 15px;
+    /* Ajusta el padding para un tamaño uniforme */
+    border-radius: 10px;
+    width: 250px;
+    /* Ancho fijo para el card */
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.product-card img {
+    max-width: 100%;
+    /* Asegura que la imagen se ajuste al tamaño del card */
+    height: 150px;
+    /* Tamaño fijo para las imágenes */
+    object-fit: cover;
+    /* Ajusta la imagen sin distorsionar */
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.product-card h3 {
+    margin: 10px 0;
+    font-size: 1.1em;
+    /* Tamaño de fuente del título más pequeño */
+}
+
+.product-card p {
+    margin: 5px 0;
+    font-size: 0.9em;
+    /* Tamaño de fuente del texto más pequeño */
+}
+
+.product-card button {
+    background-color: #007bff;
+    /* Botón coincide con el color principal */
+    border: none;
+    padding: 10px;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.product-card button:hover {
+    background-color: #0056b3;
+    /* Color del botón al pasar el ratón */
+    transition: 0.3s;
+}
+
+
+/* Footer */
+
+footer {
+    background-color: #003366;
+    color: #fff;
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 40px;
+}
+
+
+/* Media Queries */
+
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        /* Cambia la dirección a columna en pantallas pequeñas */
+        align-items: center;
+        /* Centra los elementos */
+    }
+    nav ul li {
+        margin: 10px 0;
+        /* Espacio entre los elementos en la columna */
+    }
+    #searchInput {
+        width: 80%;
+        /* Aumenta el ancho en pantallas pequeñas */
+    }
+    .product-card {
+        width: 90%;
+        /* Asegura que las tarjetas se ajusten a pantallas pequeñas */
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.2rem;
+        /* Reduce el tamaño de fuente del header */
+    }
+    nav ul {
+        flex-direction: column;
+        /* Apila los elementos de navegación */
+        padding: 0;
+        /* Elimina el padding */
+    }
+    nav .logo {
+        margin-bottom: 10px;
+        /* Espacio entre logo y navbar */
+    }
+}

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Innovación y Creatividad</title>
+    <link rel="stylesheet" href="InicioUser.css">
+</head>
+
+<body>
+    <header class="hero-section">
+        <!-- Video de fondo -->
+        <video autoplay muted loop id="bg-video">
+            <source src="FondoDicrea.mp4" type="video/mp4">
+        </video>
+
+        <nav>
+            <div class="logo">
+                <img src="fundap-logo-retina.png" style="max-width: 90px; ">
+            </div>
+            <ul style="margin-left: 20%;">
+                <li><a href="index.html">Menú</a></li>
+                <li><a href="catalogo.html">Cátalogos</a></li>
+                <li><a href="Ubicacion.html">Contacto</a></li>
+            </ul>
+            <div class="logo">
+            </div>
+        </nav>
+
+        <div class="hero-content">
+            <h1>Bienvenidos Fab Lab DiCrea</h1>
+            <p>Donde la innovación y la creatividad se encuentran. Transformamos ideas en realidades digitales.</p>
+            <a href="#about" class="btn-primary">Conócenos</a>
+        </div>
+    </header>
+
+    <section id="about" class="about-section">
+        <div class="about-content">
+            <h2>¿Quiénes Somos?</h2>
+            <p>En DiCrea, somos un equipo apasionado por la tecnología y el diseño. Nos especializamos en crear soluciones tecnológicas innovadoras que ayudan a empresas y personas a crecer en el mundo digital. Desde experiencias de realidad aumentada hasta
+                plataformas personalizadas, estamos aquí para hacer que tus ideas cobren vida.</p>
+        </div>
+        
+        <div class="about-image">
+            <img src="team.jpg" alt="Equipo de Fab Lab Direa">
+        </div>
+    </section>
+
+    <link rel="stylesheet" href="1.CSS">
+            
+    <div class="container">
+        <div class="card">
+            <img src="Captura de pantalla 2024-10-09 112123.png" alt="Foto Presidente" class="card-img">
+            <h3>Carta del presidente</h3>
+            <p><strong>POR:</strong> FRANCISCO ROBERTO GUTIÉRREZ MARTÍNEZ, MAYO DE 2023</p>
+            <p>FUNDAP continúa su servicio gracias a un equipo humano comprometido y altamente preparado.</p>
+            <button onclick="openModal('modalPresidente')">Leer Más</button>
+        </div>
+
+        <div class="card">
+            <img src="Captura de pantalla 2024-10-09 112123.png" alt="Foto Director" class="card-img">
+            <h3>Carta del director ejecutivo</h3>
+            <p><strong>POR:</strong> JORGE ARTURO GÁNDARA GABORIT, MAYO DE 2023</p>
+            <p>¿Cuáles son las características que tiene FUNDAP y que si no las tuviera no sería FUNDAP?</p>
+            <button onclick="openModal('modalDirector')">Leer Más</button>
+        </div>
+    </div>
+
+    <!-- Modal Carta Presidente -->
+    <div id="modalPresidente" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modalPresidente')">&times;</span>
+            <img src="Captura de pantalla 2024-10-09 112123.png" alt="Foto Presidente" class="modal-img">
+            <h2>CARTA DEL PRESIDENTE</h2>
+            <p><strong>Francisco Roberto Gutiérrez Martínez</strong></p>
+            <p class="main-message">FUNDAP continúa su servicio gracias a un equipo humano comprometido y altamente preparado.</p>
+            <p>Uno de los problemas sociales más apremiantes y preocupantes que sufre nuestro país es la creciente emigración de nuestros conciudadanos...</p>
+        </div>
+    </div>
+
+    <!-- Modal Carta Director -->
+    <div id="modalDirector" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modalDirector')">&times;</span>
+            <img src="Captura de pantalla 2024-10-09 112123.png" alt="Foto Director" class="modal-img">
+            <h2>CARTA DEL DIRECTOR EJECUTIVO</h2>
+            <p><strong>Jorge Arturo Gándara Gaborit</strong></p>
+            <p class="main-message">¿Cuáles son las características que tiene FUNDAP y que si no las tuviera no sería FUNDAP?</p>
+            <p>El compromiso social, la ética y la búsqueda constante del desarrollo integral de las comunidades... mucho texto</p>
+        </div>
+    </div>
+   
+    
+
+    <section class="services-section">
+        <h2>Mision & Vision</h2>
+        <div class="services">
+            <div class="service-item">
+                <h3>Mision</h3>
+                <p>Ser un centro líder de innovación y creatividad donde cualquier persona, pueda acceder a herramientas avanzadas de fabricación digital para materializar ideas y soluciones que impacten positivamente a su comunidad y al mundo.</p>
+            </div>
+            <div class="service-item">
+                <h3>Vision</h3>
+                <p>Fomentar el aprendizaje, la experimentación y la colaboración mediante el acceso abierto a tecnología de fabricación digital. Proveer un entorno inclusivo y colaborativo donde emprendedores, estudiantes, creativos y comunidades puedan desarrollar proyectos innovadores que resuelvan problemas locales y globales, impulsando el crecimiento económico y social.</p>
+            </div>
+
+            <footer class="footer">
+                <div class="container">
+                  <div class="footer-section">
+                    <img src="Di-Crea.png" alt="Fab-lab" class="logo">
+                    <div class="office-info">
+                      <h3>Oficinas Centrales</h3>
+                      <p><i class="fas fa-map-marker-alt"></i>Labor El Refugio. Formación Técnica Empresarial</p>
+                      <p><i class="fas fa-phone"></i> PBX: (502) 5921 4176</p>
+                      <p><i class="fas fa-clock"></i> Horario de 8:00 a 17:00 horas</p>
+                      <p><i class="fas fa-envelope"></i> <a href="mailto:Bayron.vasquez@fundap.com.gt">Bayron.vasquez@fundap.com.gt</a></p>
+                    </div>
+                  </div>
+              </footer>
+              <script src="1.js"></script>
+            </body>
+            </html>

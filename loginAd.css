@@ -1,0 +1,82 @@
+body {
+    background-color: #2c2c2c;
+    font-family: 'Arial', sans-serif;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-box {
+    background-color: #003366;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+    width: 320px;
+    text-align: center;
+}
+
+.login-box h2 {
+    color: #ffffff;
+    margin-bottom: 30px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.login-box .form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.login-box label {
+    color: #ffffff;
+    font-size: 14px;
+}
+
+.login-box input {
+    width: 100%;
+    padding: 10px;
+    background: #2c2c2c;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    color: #ffffff;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.login-box input::placeholder {
+    color: #ffffff;
+}
+
+.login-box button {
+    background-color: #ffffff;
+    color: #003366;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.login-box button:hover {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+.login-box .register-link {
+    margin-top: 20px;
+}
+
+.login-box .register-link a {
+    color: #ffffff;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.login-box .register-link a:hover {
+    text-decoration: underline;
+}

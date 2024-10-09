@@ -1,0 +1,92 @@
+/* Estilos generales */
+body {
+    background-color: #121212;
+    color: #ffffff;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #0d47a1; /* Azul oscuro */
+    margin-bottom: 20px;
+}
+
+.navbar-brand, .nav-link {
+    color: #ffffff !important;
+}
+
+.navbar-brand:hover, .nav-link:hover {
+    color: #b3c1f2 !important; /* Azul claro */
+}
+
+/* Contenedor principal */
+.container {
+    background-color: #1c1c1e;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+    margin-top: 2rem;
+}
+
+/* Títulos */
+h2, h3 {
+    color: #ffffff;
+}
+
+/* Estilo para los formularios */
+.form-label {
+    color: #ffffff;
+}
+
+.form-control {
+    background-color: #333333;
+    color: #ffffff;
+    border: 1px solid #444444;
+    border-radius: 5px;
+}
+
+.form-control:focus {
+    background-color: #2c2c2e;
+    color: #ffffff;
+    border: 1px solid #0d47a1; /* Azul oscuro */
+    box-shadow: 0px 0px 10px rgba(13, 71, 161, 0.5);
+}
+
+/* Botones */
+.btn-dark {
+    background-color: #333333;
+    border-color: #333333;
+    transition: background-color 0.3s ease;
+}
+
+.btn-dark:hover {
+    background-color: #1a1a1a;
+}
+
+.btn-primary {
+    background-color: #0d47a1;
+    border-color: #0d47a1;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0a357f;
+}
+
+/* Modal */
+.modal-content {
+    background-color: #1c1c1e;
+    color: #ffffff;
+}
+
+.modal-header {
+    border-bottom: 1px solid #444444;
+}
+
+.modal-footer {
+    border-top: 1px solid #444444;
+}
+
+.btn-close {
+    filter: invert(1); /* Cambia el color del botón de cerrar a blanco */
+}
