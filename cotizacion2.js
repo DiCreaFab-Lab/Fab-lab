@@ -43,9 +43,27 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Mensaje a enviar por WhatsApp
         const mensaje = `Hola, me gustaría realizar un pedido:\n\nNombre completo: ${nombreCompleto.value}\nTeléfono: ${telefono.value}\nCorreo: ${correo.value}\nMaterial: ${selectedMaterial}\nTipos de corte: ${tiposDeCorte.join(', ')}\n\nImagen del producto: ${imageURL || 'No se cargó ninguna imagen.'}`;
-        const numeroTelefono = "+40790247";  // Cambia este número por el número de WhatsApp al que quieres enviar
+        const numeroTelefono = "";  // Cambia este número por el número de WhatsApp al que quieres enviar
         const url = `https://wa.me/${numeroTelefono}?text=${encodeURIComponent(mensaje)}`;
+// Función de cierre de sesión
+document.getElementById("logoutButton").addEventListener("click", async () => {
+    try {
+        await signOut(auth);
+        alert("Has cerrado sesión");
+        window.location.href="loginAd.html";
+    } catch (error) {
+        console.error("Error al cerrar sesión: ", error);
+    }
+});
 
+// Verificar autenticación y mostrar usuarios
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+        mostrarUsuarios();
+    } else {
+        alert("Debes iniciar sesión para ver los usuarios.");
+    }
+});
         // Intentar abrir WhatsApp
         try {
             window.open(url, '_blank');

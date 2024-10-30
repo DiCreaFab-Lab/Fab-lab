@@ -14,9 +14,10 @@
         <div class="container-fluid">
             <img src="fundap-logo-retina.png" height="60px">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"><a href="index.html"></a></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
+
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="gestion-usuarios.html">Usuarios</a>
@@ -31,13 +32,10 @@
                         <a class="nav-link" href="historial.html">Historial</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="cotizacion2.html">Historial</a>
+                        <a class="nav-link" href="cotizacion2.html">Pedidos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="ayuda.html">Ayuda</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">Cerrar Sesion</a>
                     </li>
                 </ul>
             </div>
@@ -75,43 +73,63 @@
             <button type="button" class="btn btn-dark" id="Calcular">Calcular</button>
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Hacer pedido</button>
 
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Realizar pedido</h1>
-                        <button  type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                        <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">Nombre:</label>
-                            <input  type="text" class="form-control" id="Nom">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Realizar pedido</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="mb-3">
-                            <label for="message-text" class="col-form-label">Numero:</label>
-                            <input type="number" class="form-control" id="Num">
+                        <div class="modal-body">
+                            <form>
+                                <div class="mb-3">
+                                    <label for="recipient-name" class="col-form-label">Nombre:</label>
+                                    <input type="text" class="form-control" id="Nom">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="message-text" class="col-form-label">Número:</label>
+                                    <input type="number" class="form-control" id="Num">
+                                </div>
+                            </form>
                         </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <button id="Datos" type="button" class="btn btn-primary">Enviar</button>
-                    </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            <button id="EnviarPedido" type="button" class="btn btn-primary">Enviar</button>
+                        </div>
                     </div>
                 </div>
-                </div>
+            </div>
         </div>
     </main>
     <script type="module" src="cotizacionUser.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
+    <!-- EmailJS integration -->
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-        <script>
-            (function(){
-                emailjs.init("hv3Ri1IHPWxxFiX38"); // Tu User ID
-            })();
-        </script>
+    <script>
+        (function(){
+            emailjs.init("hv3Ri1IHPWxxFiX38"); // Inicializar con tu User ID
+        })();
 
+        document.getElementById("EnviarPedido").addEventListener("click", function () {
+            const nombre = document.getElementById("Nom").value;
+            const numero = document.getElementById("Num").value;
+            
+            // Preparar los parámetros para EmailJS
+            const params = {
+                nombre: nombre,
+                numero: numero
+            };
+
+            // Enviar el correo
+            emailjs.send("service_id", "template_id", params)
+                .then(() => {
+                    alert("Pedido enviado correctamente");
+                }, (error) => {
+                    console.error("Error al enviar el pedido:", error);
+                    alert("Error al enviar el pedido");
+                });
+        });
+    </script>
 </body>
 </html>
