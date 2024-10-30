@@ -1,7 +1,9 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js";
-import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, Timestamp } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-firestore.js";
-
 // Configuración de Firebase
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-auth.js";
+import { getFirestore, doc, setDoc, deleteDoc, collection, getDocs } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-firestore.js";
+
+// Nueva configuración de Firebase
 const firebaseConfig = {
     apiKey: "AIzaSyDnKcHS41_TH5jzmT2gIEU6-h4C_dnIML8",
     authDomain: "fablab2-88ab1.firebaseapp.com",
@@ -12,93 +14,92 @@ const firebaseConfig = {
     measurementId: "G-TL1F53C259"
 };
 
-// Inicialización de Firebase
+// Inicializa Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const auth = getAuth();
 
-// Función para calcular la cotización
-async function calcular() {
-    const material = document.getElementById('Materiales').value;
-    const ancho = parseFloat(document.getElementById('inputAncho').value);
-    const largo = parseFloat(document.getElementById('inputLargo').value);
-    const cantidad = parseInt(document.getElementById('inputCantidad').value);
+// Manejo del botón "Enviar"
+document.getElementById("EnviarPedido").addEventListener("submit", async (e) => {
+    e.preventDefault(); // Prevenir el comportamiento por defecto del formulario
 
-    if (!material || isNaN(ancho) || isNaN(largo) || isNaN(cantidad)) {
-        alert('Todos los campos son obligatorios y deben ser numéricos.');
+    // Obtener valores de los campos
+    const nombre = document.getElementById("inputNombre").value.trim();
+    const correo = document.getElementById("inputCorreo").value.trim();
+    const contraseña = document.getElementById("inputContraseña").value;
+
+    const messageDiv = document.getElementById("message"); // Div para mostrar mensajes
+    messageDiv.innerText = ""; // Limpiar mensaje previo
+
+    // Validación de campos
+    if (!nombre || !correo || !contraseña) {
+        messageDiv.innerText = "Todos los campos son obligatorios.";
+        messageDiv.classList.add("text-danger");
         return;
     }
-
-    const costosMateriales = {
-        'MDF 3mm': 70 / (122 * 244),
-        'MDF 6mm': 125 / (122 * 244),
-        'Acrílico 3mm': 400 / (122 * 244),
-        'Acrílico 6mm':700 /(122 * 244),
-        'Acrílico negro': 475 / (122 * 244)
-    };
-
-    if (!costosMateriales[material]) {
-        alert("Por favor selecciona un material válido.");
-        return;
-    }
-
-    const area = ancho * largo;
-    const costoUnitario = costosMateriales[material];
-    const costo = (area * costoUnitario * cantidad).toFixed(2);
-    const ganancia = (costo * 1.35).toFixed(2);
-
-    // Muestra los resultados en la página
-    document.getElementById('costo').innerText = 'Precio: Q.' + ganancia;
-    document.getElementById('area').innerText = 'Área: ' + area + ' cm²';
-
-    // conexion a firebase 
-    document.getElementById("Datos").addEventListener("click", async () => {
-        var nombre = document.getElementById("Nom").value;
-        var numero = document.getElementById("Num").value;
-
-        try {
-            const docRef = await addDoc(collection(db, "cotizaciones"), {
-                nombre: nombre,
-                numero: numero,
-                material: material,
-                ancho: ancho,
-                largo: largo,
-                cantidad: cantidad,
-                costo: costo,
-                ganancia: ganancia,
-                timestamp: Timestamp.now()
-            });
-
-                    alert("Cotizacion enviada")
-            console.log("Documento escrito con ID: ", docRef.id);
-            await enviarCorreo(nombre, numero, material, ancho, largo, cantidad, costo);
-            mostrarHistorial();
-        } catch (e) {
-            console.error("Error al agregar el documento: ", e);
-        }
-    });
-}
-
-// Función para enviar el correo
-async function enviarCorreo(fromName, fromNumber, material, ancho, largo, cantidad, costo) {
-    const templateParams = {
-        to_name: "Maria Guzmán",
-        from_name: fromName,
-        from_number: fromNumber,
-        material: material,
-        ancho: ancho,
-        largo: largo,
-        cantidad: cantidad,
-        costo: costo
-    };
 
     try {
-        const response = await emailjs.send("service_6mgj61s", "template_hs5tvds", templateParams);
-        console.log("Correo enviado con éxito: ", response);
-    } catch (error) {
-        console.error("Error al enviar el correo: ", error);
-    }
-};
-document.getElementById('Calcular').addEventListener('click', calcular);
+        // Crear un nuevo usuario en Firebase Authentication
+        const userCredential = await createUserWithEmailAndPassword(auth, correo, contraseña);
+        const user = userCredential.user;
 
-// Inicializar historial al cargar la página
-mostrarHistorial();
+        // Guardar información adicional en Firestore (sin contraseña)
+        const newUserRef = doc(db, "Administracion", user.uid);
+        await setDoc(newUserRef, {
+            nombre: nombre,
+            correo: correo,
+            estado: true // Estado activo por defecto
+        });
+
+        messageDiv.innerText = `Bienvenido ${nombre}`;
+        messageDiv.classList.remove("text-danger");
+        messageDiv.classList.add("text-success");
+
+        // Limpiar los campos del formulario
+        document.getElementById("inputNombre").value = "";
+        document.getElementById("inputCorreo").value = "";
+        document.getElementById("inputContraseña").value = "";
+
+        // Mostrar usuarios después de registrar uno nuevo
+        mostrarUsuarios();
+
+    } catch (error) {
+        console.error("Error al registrar el usuario: ", error);
+        let errorMessage = "Hubo un error al registrar el usuario.";
+        if (error.code === "auth/invalid-email") {
+            errorMessage = "El correo electrónico no es válido.";
+        } else if (error.code === "auth/email-already-in-use") {
+            errorMessage = "El correo electrónico ya está en uso.";
+        }
+        messageDiv.innerText = errorMessage;
+        messageDiv.classList.add("text-danger");
+    }
+});
+
+
+
+// Función para eliminar un usuario
+async function eliminarUsuario(userId) {
+    try {
+        await deleteDoc(doc(db, "Administracion", userId)); // Reemplaza "Administracion" con el nombre de tu colección
+        console.log("Usuario eliminado: ", userId);
+        mostrarUsuarios(); // Refrescar la lista de usuarios
+    } catch (error) {
+        console.error("Error al eliminar el usuario: ", error);
+    }
+}
+
+// Función para restablecer contraseña
+async function restablecerContrasena(correo) {
+    try {
+        await sendPasswordResetEmail(auth, correo);
+        alert("Se ha enviado un correo para restablecer la contraseña a " + correo);
+    } catch (error) {
+        console.error("Error al enviar el correo de restablecimiento: ", error);
+    }
+}
+
+// Hacer las funciones accesibles globalmente
+window.eliminarUsuario = eliminarUsuario;
+window.restablecerContrasena = restablecerContrasena;
+
